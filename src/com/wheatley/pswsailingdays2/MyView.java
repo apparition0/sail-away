@@ -52,20 +52,24 @@ public class MyView {
 	protected void init()
 	{
 		try {
+			// worst weather
 			NumberPicker np1 = (NumberPicker) _a
 					.findViewById(R.id.numberPicker1);
-			np1.setMaxValue(20);
+			np1.setMaxValue(2);
 			np1.setMinValue(0);
+			np1.setDisplayedValues(new String[] { "Clear or Cloudy",
+					"Chance of Thunderstorms", "Thunderstorms" });
+			// min wind
 			NumberPicker np2 = (NumberPicker) _a
 					.findViewById(R.id.numberPicker2);
-			np2.setMaxValue(30);
+			np2.setMaxValue(20);
 			np2.setMinValue(0);
+			// max wind
 			NumberPicker np3 = (NumberPicker) _a
 					.findViewById(R.id.numberPicker3);
-			np3.setMaxValue(2);
+			np3.setMaxValue(30);
 			np3.setMinValue(0);
-			np3.setDisplayedValues(new String[] { "Clear or Cloudy",
-					"Chance of Thunderstorms", "Thunderstorms" });
+
 			Button b1 = (Button) _a.findViewById(R.id.button1);
 			b1.setOnClickListener(new Button.OnClickListener() {  
 		        public void onClick(View v)
