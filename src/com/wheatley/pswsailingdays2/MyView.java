@@ -30,24 +30,16 @@ public class MyView {
 	protected static int _WorstWeather;
 	protected static int _WindMin;
 	protected static int _WindMax;
+	protected static Button b1;
+	protected static Button b2;
+	protected static Button b3;
+	protected static Button b4;
 	
 	public MyView(Activity a)
 	{
 		_a = a;
 
 		init();
-	}
-	public static void setContext(Context c)
-	{
-		_c = c;
-	}
-	public static Context getContext()
-	{
-		return _c;
-	}
-	public static Activity getActivity()
-	{
-		return _a;
 	}
 	protected void init()
 	{
@@ -70,28 +62,28 @@ public class MyView {
 			np3.setMaxValue(30);
 			np3.setMinValue(0);
 
-			Button b1 = (Button) _a.findViewById(R.id.button1);
+			b1 = (Button) _a.findViewById(R.id.button1);
 			b1.setOnClickListener(new Button.OnClickListener() {  
 		        public void onClick(View v)
 	            { // start
 		        	MyController.start();
 	            }
 	         });
-			Button b2 = (Button) _a.findViewById(R.id.button2);
+			b2 = (Button) _a.findViewById(R.id.button2);
 			b2.setOnClickListener(new Button.OnClickListener() {  
 		        public void onClick(View v)
 	            { // stop
 		        	MyController.stop();
 	            }
 	         });
-			Button b3 = (Button) _a.findViewById(R.id.button3);
+			b3 = (Button) _a.findViewById(R.id.button3);
 			b3.setOnClickListener(new Button.OnClickListener() {  
 		        public void onClick(View v)
 	            { // save
 		        	MyController.save();
 	            }
 	         });
-			Button b4 = (Button) _a.findViewById(R.id.button4);
+			b4 = (Button) _a.findViewById(R.id.button4);
 			b4.setOnClickListener(new Button.OnClickListener() {  
 		        public void onClick(View v)
 	            { // reload
@@ -160,5 +152,42 @@ public class MyView {
 		NumberPicker n3 = (NumberPicker) _a.findViewById(R.id.numberPicker3);
 		n3.setValue(windMax);
 		_WindMax = windMax;
+	}
+
+	public static void setContext(Context c)
+	{
+		_c = c;
+	}
+	public static Context getContext()
+	{
+		return _c;
+	}
+	public static Activity getActivity()
+	{
+		return _a;
+	}
+	public static Button getStartButton() {
+		return b1;
+	}
+	public static void setStartButton(Button b1) {
+		MyView.b1 = b1;
+	}
+	public static Button getStopButton() {
+		return b2;
+	}
+	public static void setStopButton(Button b2) {
+		MyView.b2 = b2;
+	}
+	public static Button getSaveButton() {
+		return b3;
+	}
+	public static void setSaveButton(Button b3) {
+		MyView.b3 = b3;
+	}
+	public static Button getReloadButton() {
+		return b4;
+	}
+	public static void setReloadButton(Button b4) {
+		MyView.b4 = b4;
 	}
 }

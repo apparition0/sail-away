@@ -19,7 +19,7 @@ import android.widget.TimePicker;
 public  class MyController {
 	public MyController()
 	{
-		
+		MyView.getStopButton().setEnabled(false);
 	}
 	public static void save()
 	{
@@ -36,11 +36,15 @@ public  class MyController {
 	}
 	public static void start() 
 	{
-		
+		MyView.getStartButton().setEnabled(false);
+		MyView.getStopButton().setEnabled(true);
+		MyWeather.FetchWeather();
 	}
 	public static void stop() 
 	{
-		
+		MyView.getStartButton().setEnabled(true);
+		MyView.getStopButton().setEnabled(false);
+		MyWeather.stopFetching();
 	}
 	public static void reload() 
 	{
@@ -54,4 +58,10 @@ public  class MyController {
 		MyView.setWindMin(sp.getInt("WindMin", 				MyView.getWindMin()));
 		MyView.setWorstWeather(sp.getInt("WorstWeather", 	MyView.getWorstWeather()));
 	}
+	public static void parseResults()
+	{
+		String results = MyWeather.getJsonResult();
+		MyWuJson.parse(results);
+	}
+	
 }
