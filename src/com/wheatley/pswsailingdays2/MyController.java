@@ -4,6 +4,7 @@ package com.wheatley.pswsailingdays2;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.TimePicker;
 
 
 public  class MyController {
+	static MyService _service;
 	public MyController()
 	{
 		MyView.getStopButton().setEnabled(false);
@@ -45,6 +47,9 @@ public  class MyController {
 		MyView.getStartButton().setEnabled(true);
 		MyView.getStopButton().setEnabled(false);
 		MyWeather.stopFetching();
+        Intent i = new Intent(MyView.getActivity(), MyService.class);
+        MyView.getActivity().stopService(i);
+
 	}
 	public static void reload() 
 	{
@@ -61,7 +66,11 @@ public  class MyController {
 	public static void parseResults()
 	{
 		String results = MyWeather.getJsonResult();
-		MyWuJson.parse(results);
+		MyWuJson.parse(results);  // results in ListOfDays filled in.  move to another object
+		_service = new MyService();
+        Intent i = new Intent(MyView.getActivity(), MyService.class);
+        //i.putExtra("name", "philip");       
+        MyView.getActivity().startService(i); 
 	}
 	
 }

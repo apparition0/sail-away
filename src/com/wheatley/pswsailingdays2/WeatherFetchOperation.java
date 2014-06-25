@@ -18,10 +18,10 @@ public class WeatherFetchOperation extends AsyncTask<String, Void, String> {
 	protected String doInBackground(String... arg0) {
 		String result = null;
 
-		if (false) {
+		if (true) {
 			result = MyFile.readFromFile("2014-06-22-json");
-			MyWeather.setJsonResult(result);
-			MyController.parseResults();
+			MyWeather.setJsonResult(result);  // minus: adds control logic, plus: async thread and where else
+			MyController.parseResults();      // probably should be an observer pattern
 			return result;
 		} else {
 			DefaultHttpClient httpclient = new DefaultHttpClient(

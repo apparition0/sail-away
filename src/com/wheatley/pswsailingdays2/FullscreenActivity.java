@@ -122,7 +122,7 @@ public class FullscreenActivity extends Activity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-        _mv =  new MyView(this);
+        _mv =  new MyView(this);  // needs to be called by mainthread
         Context c = getApplicationContext(); 
         _mv.setContext(c);
     }
