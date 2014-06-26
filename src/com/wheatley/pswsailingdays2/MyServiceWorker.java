@@ -15,16 +15,7 @@ public class MyServiceWorker extends AsyncTask {
 		Log.d("Philip", "doInBackground");
 		_mt = new MyTimer();
 		Timer timer = new Timer(true);
-		// Date dt = new Date();
-		// Calendar _cnow = Calendar.getInstance();
-		// Calendar _cthen = Calendar.getInstance();
-		// _cthen.clear(Calendar.HOUR);
-		// _cthen.clear(Calendar.MINUTE);
-		// _cthen.clear(Calendar.SECOND);
-		// _cthen.set(Calendar.HOUR, MyView.getHour());
-		// _cthen.set(Calendar.MINUTE, MyView.getMinute());
-
-		timer.scheduleAtFixedRate(_mt, 10000, 1000 * 60 * 60 );
+		timer.scheduleAtFixedRate(_mt, 10000/*ten seconds*/, /*10 minutes*/ 1000 * 60 * 10 );
 		return null;
 	}
 }

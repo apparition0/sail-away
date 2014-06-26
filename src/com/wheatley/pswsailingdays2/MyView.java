@@ -41,6 +41,7 @@ public class MyView {
 	protected static Button b2;
 	protected static Button b3;
 	protected static Button b4;
+	private final static int myid = 10101010;
 
 	// need to add temperature, as if below freezing probably is not acceptable
 
@@ -66,17 +67,17 @@ public class MyView {
 		}
 	}
 
-	public static void NotificationDetails() {
-		int myid = 10101010; 
+	protected static void NotificationDetails() {
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(_a)
 				.setContentTitle("Sailing")
 				.setSmallIcon(
 						com.wheatley.pswsailingdays2.R.drawable.ic_launcher)
 				.setContentText("go Sailing Tomorrow");
 		// Creates an explicit intent for an Activity in your app
-		Intent resultIntent = new Intent(_a,FullscreenActivity.class);
+		Intent resultIntent = new Intent(_a, FullscreenActivity.class);
 
-		// The stack builder object will contain an artificial back stack for the
+		// The stack builder object will contain an artificial back stack for
+		// the
 		// started Activity.
 		// This ensures that navigating backward from the Activity leads out of
 		// your application to the Home screen.
@@ -85,14 +86,11 @@ public class MyView {
 		stackBuilder.addParentStack(FullscreenActivity.class);
 		// Adds the Intent that starts the Activity to the top of the stack
 		stackBuilder.addNextIntent(resultIntent);
-		PendingIntent resultPendingIntent =
-		        stackBuilder.getPendingIntent(
-		            0,
-		            PendingIntent.FLAG_UPDATE_CURRENT
-		        );
+		PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,
+				PendingIntent.FLAG_UPDATE_CURRENT);
 		builder.setContentIntent(resultPendingIntent);
-		NotificationManager mNotificationManager =
-		    (NotificationManager) _a.getSystemService(Context.NOTIFICATION_SERVICE);
+		NotificationManager mNotificationManager = (NotificationManager) _a
+				.getSystemService(Context.NOTIFICATION_SERVICE);
 		// mId allows you to update the notification later on.
 		mNotificationManager.notify(myid, builder.build());
 	}
@@ -102,6 +100,17 @@ public class MyView {
 			@Override
 			public void run() {
 				NotificationDetails();
+			}
+		});
+	}
+
+	public static void CancelNotification() {
+		_mainthread.post(new Runnable() {
+			@Override
+			public void run() {
+				String s = Context.NOTIFICATION_SERVICE;
+			    NotificationManager nMgr = (NotificationManager) _c.getSystemService(s);
+			    nMgr.cancel(myid);
 			}
 		});
 	}
@@ -123,7 +132,7 @@ public class MyView {
 			// max wind
 			NumberPicker np3 = (NumberPicker) _a
 					.findViewById(R.id.numberPicker3);
-			np3.setMaxValue(30);
+			np3.setMaxValue(35);
 			np3.setMinValue(0);
 
 			b1 = (Button) _a.findViewById(R.id.button1);
@@ -133,6 +142,7 @@ public class MyView {
 				}
 			});
 			b2 = (Button) _a.findViewById(R.id.button2);
+			b2.setEnabled(false);
 			b2.setOnClickListener(new Button.OnClickListener() {
 				public void onClick(View v) { // stop
 					MyController.stop();

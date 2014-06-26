@@ -12,11 +12,10 @@ public class MyTimer extends TimerTask {
 		Boolean r = false;
 		Log.d("philip", "timertask.run");
 		MyWeather mw = new MyWeather();
+		mw.FetchWeather();
 		r = mw.CheckTomorrow();
 		if(r)
 			MyView.Notification();
-		// todo alert user somehow?
-		// return r;
 	}
 
 }

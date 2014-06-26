@@ -14,11 +14,12 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class WeatherFetchOperation extends AsyncTask<String, Void, String> {
+	protected Boolean testmode = false;  // future mock
 	@Override
 	protected String doInBackground(String... arg0) {
 		String result = null;
 
-		if (true) {
+		if (testmode) {
 			result = MyFile.readFromFile("2014-06-22-json");
 			MyWeather.setJsonResult(result);  // minus: adds control logic, plus: async thread and where else
 			MyController.parseResults();      // probably should be an observer pattern
@@ -57,14 +58,9 @@ public class WeatherFetchOperation extends AsyncTask<String, Void, String> {
 				} catch (Exception squish) {
 				}
 			}
-			MyFile.writeToFile("2014-06-22-json", result); // TODO belongs
-															// elsewhere
-			MyWeather.setJsonResult(result);
-			MyController.parseResults(); // plus, this is done in a separet
-											// "thread"
-											// minus, done by Weather Fetch
-											// instance
-											// Observer might have been better
+			MyFile.writeToFile("2014-06-22-json", result); // TODO belongs elsewhere															
+			MyWeather.setJsonResult(result);  // minus: adds control logic, plus: async thread and where else
+			MyController.parseResults();      // probably should be an observer pattern
 		}
 		return result;
 	}
