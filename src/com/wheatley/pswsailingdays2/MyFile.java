@@ -16,7 +16,7 @@ public class MyFile {
 			fos.flush();
 			fos.close();
 		} catch (IOException e) {
-			Log.e("philip", e.toString());
+			Log.e("philip", "MyFile write " + e.toString());
 			r = false;
 		}
 		return r;
@@ -36,7 +36,7 @@ public class MyFile {
 			}
 			message = sb.toString();
 		} catch (IOException e) {
-			Log.e("philip", e.toString());
+			Log.e("philip",  "MyFile read " + e.toString());
 		} finally {
 			try {
 				if (fis != null)

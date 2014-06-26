@@ -39,11 +39,9 @@ public class MyController {
 	public static void start() {
 		MyView.getStartButton().setEnabled(false);
 		MyView.getStopButton().setEnabled(true);
-		// MyWeather.FetchWeather();
 		if (_service == null)
 			_service = new MyService();
 		Intent i = new Intent(MyView.getActivity(), MyService.class);
-		// i.putExtra("name", "philip");
 		MyView.getActivity().startService(i);
 
 	}
@@ -73,8 +71,7 @@ public class MyController {
 
 	public static void parseResults() {
 		String results = MyWeather.getJsonResult();
-		MyWuJson.parse(results); // results in ListOfDays filled in. move to
-									// another object
+		MyWuJson.parse(results); 
 	}
 
 }

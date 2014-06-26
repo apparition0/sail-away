@@ -9,7 +9,6 @@ public class MyService extends Service {
 
 	@Override
 	public IBinder onBind(Intent arg0) {
-		// TODO Auto-generated method stub
 		Log.d("philip","onBind");
 		return null;
 	}
@@ -21,8 +20,6 @@ public class MyService extends Service {
 		MyServiceWorker msw = new MyServiceWorker();
 		msw.execute();
 		return r;
-		
-		//return START_NOT_STICKY;
 	}
 	
 }

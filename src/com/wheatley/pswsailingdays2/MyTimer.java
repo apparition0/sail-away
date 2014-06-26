@@ -10,12 +10,9 @@ public class MyTimer extends TimerTask {
 	@Override
 	public void run() {
 		Boolean r = false;
-		Log.d("philip", "timertask.run");
+		Log.d("philip", "timertask.run()");
 		MyWeather mw = new MyWeather();
-		mw.FetchWeather();
-		r = mw.CheckTomorrow();
-		if(r)
-			MyView.Notification();
+		mw.FetchWeather(); // will spawn off another thread
 	}
 
 }

@@ -63,16 +63,16 @@ public class MyWeather {
 		return r;
 	}
 
-	private Boolean isWithinTolerances(MyDay md) {
+	private Boolean isWithinTolerances(MyDay tomorrow) {
 		Boolean r = true; // will set to false if any mismatch
 		int a,b;
 		a = MyView.getWindMax(); 
-		b = md.getMaxwind();
-		if (a > b)
+		b = tomorrow.getMaxwind();
+		if (a < b)
 			r = false;
 		a = MyView.getWindMin();
-		b = md.getAvewind();
-		if (a < b)
+		b = tomorrow.getAvewind();
+		if (a > b)
 			r = false;
 		return r;
 	}

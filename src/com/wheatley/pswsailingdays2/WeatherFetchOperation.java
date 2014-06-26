@@ -29,7 +29,6 @@ public class WeatherFetchOperation extends AsyncTask<String, Void, String> {
 					new BasicHttpParams());
 			HttpPost httppost = new HttpPost(
 					"http://api.wunderground.com/api/f2e53d68fe83590a/forecast10day/q/TX/Dallas.json");
-			// Depends on your web service
 			httppost.setHeader("Content-type", "application/json");
 
 			InputStream inputStream = null;
@@ -61,6 +60,10 @@ public class WeatherFetchOperation extends AsyncTask<String, Void, String> {
 			MyFile.writeToFile("2014-06-22-json", result); // TODO belongs elsewhere															
 			MyWeather.setJsonResult(result);  // minus: adds control logic, plus: async thread and where else
 			MyController.parseResults();      // probably should be an observer pattern
+			MyWeather mw = new MyWeather();			
+			if(mw.CheckTomorrow())
+				MyView.Notification();
+
 		}
 		return result;
 	}

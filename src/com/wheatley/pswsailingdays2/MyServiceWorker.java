@@ -12,10 +12,10 @@ public class MyServiceWorker extends AsyncTask {
 
 	@Override
 	protected Object doInBackground(Object... arg0) {
-		Log.d("Philip", "doInBackground");
+		Log.d("Philip", "MyServiceWorker.doInBackground()");
 		_mt = new MyTimer();
 		Timer timer = new Timer(true);
-		timer.scheduleAtFixedRate(_mt, 10000/*ten seconds*/, /*10 minutes*/ 1000 * 60 * 10 );
+		timer.scheduleAtFixedRate(_mt, 10000/*ten seconds*/, /*24 hours*/ 1000 * 60 * 60 * 24 );
 		return null;
 	}
 }
