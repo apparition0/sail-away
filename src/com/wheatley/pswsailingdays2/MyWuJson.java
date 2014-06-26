@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
@@ -17,22 +18,58 @@ public class MyWuJson {
 
 	public static List<MyDay> parse(String s) {
 		try {
-			if (true) {
-				lod.add(new MyDay(177,30,10,100,70, "chancetstorms"));
-				lod.add(new MyDay(172,30,10,100,70, "chancetstorms"));
-				lod.add(new MyDay(173,30,10,100,70, "chancetstorms"));
-				lod.add(new MyDay(174,30,10,100,70, "chancetstorms"));
-				lod.add(new MyDay(175,30,10,100,70, "chancetstorms"));
-				lod.add(new MyDay(176,30,10,100,70, "chancetstorms"));
+			if (false) {
+				lod.add(new MyDay(177, 30, 10, 100, 70, "chancetstorms"));
+				lod.add(new MyDay(172, 30, 10, 100, 70, "chancetstorms"));
+				lod.add(new MyDay(173, 30, 10, 100, 70, "chancetstorms"));
+				lod.add(new MyDay(174, 30, 10, 100, 70, "chancetstorms"));
+				lod.add(new MyDay(175, 30, 10, 100, 70, "chancetstorms"));
+				lod.add(new MyDay(176, 30, 10, 100, 70, "chancetstorms"));
 			} else {
 				JSONObject jo = new JSONObject(s);
-				recurse(jo, ".. ");
+				directparse(jo);
+				// recurse(jo, ".. ");
 			}
 		} catch (Exception ex) {
 			Log.e("philip", ex.toString());
 		}
 		Log.v("philip", "exiting json");
 		return lod;
+	}
+
+	public static void directparse(JSONObject jo) {
+		String name, value;
+		try {
+			JSONObject jo1 = jo.getJSONObject("forecast");
+			JSONObject jo2 = jo1.getJSONObject("simpleforecast");
+			Object o = jo2.get("forecastday");
+
+			JSONArray ja = (JSONArray) o;	
+//			
+//			for (int k = 0; k < ja.length(); k++) {
+//				JSONObject jo4 = ja.getJSONObject(k);
+//				Log.d("philip",jo4.toString());				
+//			}
+			JSONObject jo5 = ja.getJSONObject(0);
+			Iterator i = jo5.keys();
+			while(i.hasNext())
+			{
+				Object o2 = i.next();
+				name = o2.toString();
+				value = "NA";
+				Log.d("philip",name);
+				if(o2 instanceof JSONObject)
+					value = ((JSONObject)o2).getString(name);
+				Log.d("philip",value);
+			}
+			value = jo5.get("icon").toString();
+			Log.d("philip",value);
+			
+		} catch (JSONException e) {
+			Log.e("philip", e.toString());
+		} catch (Exception e) {
+			Log.e("philip", e.toString());
+		}
 	}
 
 	public static void fillin(JSONObject o, String s) {
