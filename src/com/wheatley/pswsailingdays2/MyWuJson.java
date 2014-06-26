@@ -43,27 +43,75 @@ public class MyWuJson {
 			JSONObject jo1 = jo.getJSONObject("forecast");
 			JSONObject jo2 = jo1.getJSONObject("simpleforecast");
 			Object o = jo2.get("forecastday");
-
 			JSONArray ja = (JSONArray) o;	
-//			
-//			for (int k = 0; k < ja.length(); k++) {
-//				JSONObject jo4 = ja.getJSONObject(k);
-//				Log.d("philip",jo4.toString());				
-//			}
-			JSONObject jo5 = ja.getJSONObject(0);
-			Iterator i = jo5.keys();
-			while(i.hasNext())
-			{
-				Object o2 = i.next();
-				name = o2.toString();
-				value = "NA";
-				Log.d("philip",name);
-				if(o2 instanceof JSONObject)
-					value = ((JSONObject)o2).getString(name);
-				Log.d("philip",value);
+			
+			for (int k = 0; k < ja.length(); k++) {
+				JSONObject jo4 = ja.getJSONObject(k);
+				Log.d("philip1",jo4.toString());//.substring(0, 25));		
+				MyDay md = new MyDay();
+				
+				value = jo4.get("icon").toString();
+				Log.d("icon",value);
+				md.setIcon(value);
+				
+				value = jo4.get("maxwind").toString();
+				Log.d("maxwind",value);
+				value = jo4.getJSONObject("maxwind").get("mph").toString();
+				Log.d("maxwind",value);
+				md.setMaxwind(Integer.parseInt(value));
+				
+				value = jo4.get("avewind").toString();
+				Log.d("avewind",value);
+				value = jo4.getJSONObject("avewind").get("mph").toString();
+				Log.d("avewind",value);
+				md.setAvewind(Integer.parseInt(value));
+				
+				value = jo4.get("high").toString();
+				Log.d("high",value);
+				value = jo4.getJSONObject("high").get("fahrenheit").toString();
+				Log.d("high",value);
+				md.setHi(Integer.parseInt(value));
+				
+				value = jo4.get("low").toString();
+				Log.d("low",value);
+				value = jo4.getJSONObject("low").get("fahrenheit").toString();
+				Log.d("low",value);
+				md.setLo(Integer.parseInt(value));
+				
+				value = jo4.get("date").toString();
+				Log.d("date",value);
+				value = jo4.getJSONObject("date").get("yday").toString();
+				Log.d("date",value);
+				md.setYday(Integer.parseInt(value));
+				
+				lod.add(md);
+				Log.d("myday",md.toString());
 			}
-			value = jo5.get("icon").toString();
-			Log.d("philip",value);
+
+//			JSONObject jo5 = ja.getJSONObject(0);
+//			Iterator i = jo5.keys();
+//			while(i.hasNext())
+//			{
+//				Object o2 = i.next();
+//				name = o2.toString();
+//				value = "NA";
+//				Log.d("philip",name);
+//				if(o2 instanceof JSONObject)
+//					value = ((JSONObject)o2).getString(name);
+//				Log.d("philip",value);
+//			}
+//			MyDay md = new MyDay();
+//			value = jo5.get("avewind").toString();
+//			Log.d("philip",value);
+//			md.setAvewind(z);
+//			md.setHi(hi);
+//			md.setIcon(jo5.get("icon").toString());
+//			md.setLo(lo);
+//			md.setMaxwind(maxwind);
+//			md.setYday(yday);
+//			md.setWorstweatherenum(worstweatherenum);
+//			value = jo5.get("icon").toString();
+//			Log.d("philip",value);
 			
 		} catch (JSONException e) {
 			Log.e("philip", e.toString());
