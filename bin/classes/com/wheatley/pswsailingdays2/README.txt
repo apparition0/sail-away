@@ -7,11 +7,12 @@ COMPLETED
 		remove icon notification
 	fix control flow
 	fix compareto code
-TODO
 	clean up logging
 	fix timer intervals
+TODO
 	test against icon
 	autoload preferences?
+	better warning users of issues/exceptions
 TODO - next version
 	addDagger DI
 	offer storing on AWS (cloud) to share config among devices ( requires security?)
@@ -19,7 +20,7 @@ TODO - next version
 	timer to run at scheduled time, not just after start
 	help screen
 	allow update of WU string
-	
+	AOP logging, ApectJ?	
 AREAS:
 	Activity - fix top bar to appear?
 	Controller - AOP add logging

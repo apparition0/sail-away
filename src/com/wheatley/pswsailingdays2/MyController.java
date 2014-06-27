@@ -1,3 +1,5 @@
+// copyright: Philip Wheatley 2014
+
 package com.wheatley.pswsailingdays2;
 
 import android.annotation.TargetApi;
